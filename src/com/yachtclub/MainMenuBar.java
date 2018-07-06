@@ -2,6 +2,7 @@ package com.yachtclub;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,10 +63,18 @@ public class MainMenuBar extends JMenuBar {
 
     public BufferedImage open () {
 
-        //Creates a new FileChooser dialog, sets the default location, and looks for a user response
+        //Creates a new FileChooser dialog, sets the default location
 
         JFileChooser imageOpen = new JFileChooser();
         imageOpen.setCurrentDirectory(new File(System.getProperty("user.home")));
+
+        //Requires certain file types
+
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Image Files", "png", "jpg", "gif", "bmp");
+        imageOpen.setFileFilter(filter);
+
+        //Opens it and looks for user response
+
         int result = imageOpen.showOpenDialog(this);
         File selectedLocation = null;
 
